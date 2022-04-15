@@ -11,7 +11,7 @@ from minIO.minIO import ImageMinioAccess
 
 app = FastAPI()
 
-image_dao = ImageDao('images_database.db')
+image_dao = ImageDao('db/images_database.db')
 image_minio_access = ImageMinioAccess() #access_data
 repo = Repository(image_dao,image_minio_access)
 
