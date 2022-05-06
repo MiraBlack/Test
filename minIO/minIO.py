@@ -1,14 +1,17 @@
 from minio import Minio
 import io
-from db.db import ImageDao
 
 class ImageMinioAccess:
 
-    def __init__(self): 
-        self.client = Minio(endpoint = 'play.min.io',
-        access_key = 'Q3AM3UQ867SPQQA43P2F',
-        secret_key = 'zuf+tfteSlswRu7BJ86wekitnifILbZam1KYY3TG')
+    def __init__(self, endpoint, access_key, secret_key): 
+        self.endpoint = endpoint
+        self.access_key = access_key
+        self.secret_key = secret_key
+        self.client = Minio(endpoint = self.endpoint,
+                            access_key = self.access_key,
+                            secret_key = self.secret_key)
 
+    
 
     def insert_images(self, files, bucket_name, uuid):
         if self.client.bucket_exists(bucket_name) is False:
